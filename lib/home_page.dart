@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:website_app/components/custom_cursor_widget.dart';
+import 'package:website_app/components/doted_background_painter.dart';
+import 'package:website_app/components/lines_painter.dart';
+import 'package:website_app/components/services_widget.dart';
+import 'package:website_app/components/skills_widget.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -14,6 +20,7 @@ class _HomePageState extends State<HomePage> {
   double zoomLevel = 1.0;
   Offset pointer = Offset.zero;
   bool isClicked = false;
+  bool shouldHide = false;
 
   void _resetView() {
     _transformationController.value = Matrix4.identity(); // Reset to original position
@@ -40,7 +47,12 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    print('zoomLevel: $zoomLevel');
+    Size size = MediaQuery.of(context).size;
+    double height = size.height;
+    double width = size.width;
+
+    Offset skillsOffset = Offset(height*0.7, width*0.2);
+    Offset servicesOffset = Offset(height*0.4, width*0.3);
 
     return Scaffold(
       body: MouseRegion(
@@ -62,7 +74,6 @@ class _HomePageState extends State<HomePage> {
             });
           },
         child: InteractiveViewer(
-          // boundaryMargin: EdgeInsets.all(20),
           minScale: 0.1,
           maxScale: 5.0,
           transformationController: _transformationController,
@@ -70,28 +81,37 @@ class _HomePageState extends State<HomePage> {
             children: [
               CustomPaint(
                 painter: DottedBackgroundPainter(backgroundColor: Colors.grey, zoomLevel: zoomLevel),
-                child: Center(
-                  child: InkWell(
-                    onTap: _resetView,
-                    child: Text(
-                      'Hello, Flutter!',
-                      style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                child: Stack(
+                  children: [
+
+                    CustomPaint(
+                      size: Size(width, height), // Set the size of the canvas
+                      painter: LinePainter(),
                     ),
-                  ),
+
+                    Positioned(
+                      top: skillsOffset.dy,
+                      left: skillsOffset.dx,
+                      child: const SkillsWidget(),
+                    ),
+                    
+                    Positioned(
+                      top: servicesOffset.dy,
+                      left: servicesOffset.dx,
+                      child: const ServicesWidget(),
+                    ),
+                  ],
                 ),
               ),
 
-              Positioned(
-                left: pointer.dx - 10,
+              // Custom cursor overlay
+              AnimatedPositioned(
+                duration: const Duration(milliseconds: 40),
                 top: pointer.dy - 10,
-                child: AnimatedContainer(
-                  duration: Duration(milliseconds: 100),
-                  width: isClicked ? 15 : 20,
-                  height: isClicked ? 15 : 20,
-                  decoration: BoxDecoration(
-                    color: isClicked ? Colors.red : Colors.blue,
-                    shape: BoxShape.circle,
-                  ),
+                left: pointer.dx - 10,
+                child: CustomCursorWidget(
+                  isClicked: isClicked,
+                  shouldHide: shouldHide,
                 ),
               ),
 
@@ -104,44 +124,3 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-class DottedBackgroundPainter extends CustomPainter {
-  final Color? backgroundColor;
-  final Paint _backgroundPaint;
-  final Paint _dotPaint;
-  final double zoomLevel;
-
-  DottedBackgroundPainter({this.backgroundColor, required this.zoomLevel})
-      : _backgroundPaint = Paint()..color = backgroundColor ?? Colors.transparent,
-        _dotPaint = Paint()
-          ..color = Colors.black45
-          ..style = PaintingStyle.fill;
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    // Draw background color
-    if (backgroundColor != null) {
-      final rect = Rect.fromLTWH(0, 0, size.width, size.height);
-      canvas.drawRect(rect, _backgroundPaint);
-    }
-
-    // Draw dots pattern
-    _drawDots(canvas, size);
-  }
-
-  void _drawDots(Canvas canvas, Size size) {
-    // const double dotSpacing = 20.0; // Spacing between dots
-    // const double dotSize = 1.0; // Dot size
-    double dotSpacing = 20.0 / zoomLevel; // Adjust dot spacing based on zoom level
-    double dotSize = 1.0 / zoomLevel; // Adjust dot size based on zoom level
-
-
-    for (double y = 0; y < size.height; y += dotSpacing) {
-      for (double x = 0; x < size.width; x += dotSpacing) {
-        canvas.drawCircle(Offset(x, y), dotSize, _dotPaint);
-      }
-    }
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
-}
