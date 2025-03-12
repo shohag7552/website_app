@@ -27,6 +27,27 @@ class LinePainter extends CustomPainter {
       canvas.drawLine(line[0], line[1], paint);
     }
 
+    // Draw dot (red)
+    Paint dotPaint = Paint()..color = Colors.black;
+
+    List<Offset> dots = [
+      Offset(size.width / 2, size.height * 0.1),
+      Offset(size.width / 2, size.height * 0.25),
+      Offset(size.width * 0.2, size.height * 0.25),
+      Offset(size.width * 0.8, size.height * 0.25),
+      Offset(size.width / 2, size.height * 0.45),
+      Offset(size.width * 0.8, size.height * 0.95),
+      Offset(size.width / 2, size.height * 0.7),
+      Offset(size.width / 2, size.height * 0.75),
+      Offset(size.width / 2, size.height * 0.9),
+    ];
+
+    for (var dot in dots) {
+      canvas.drawCircle(dot, 3, dotPaint);
+    }
+
+    // canvas.drawCircle(Offset(size.width * 0.3, size.height * 0.3), 5, dotPaint);
+
     // Draw Text labels
     TextPainter textPainter = TextPainter(textDirection: TextDirection.ltr);
     _drawText(canvas, textPainter, "PLAYGROUND", Offset(size.width * 0.15, size.height * 0.18));

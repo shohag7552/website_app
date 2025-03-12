@@ -27,7 +27,7 @@ class DottedBackgroundPainter extends CustomPainter {
   void _drawDots(Canvas canvas, Size size) {
     // const double dotSpacing = 20.0; // Spacing between dots
     // const double dotSize = 1.0; // Dot size
-    double dotSpacing = 20.0 / zoomLevel; // Adjust dot spacing based on zoom level
+    double dotSpacing = 30.0 / zoomLevel; // Adjust dot spacing based on zoom level
     double dotSize = 1.0 / zoomLevel; // Adjust dot size based on zoom level
 
 

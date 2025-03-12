@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:website_app/tasks/about_widget.dart';
 import 'package:website_app/components/custom_cursor_widget.dart';
 import 'package:website_app/components/doted_background_painter.dart';
 import 'package:website_app/components/lines_painter.dart';
-import 'package:website_app/components/services_widget.dart';
-import 'package:website_app/components/skills_widget.dart';
+import 'package:website_app/tasks/project_widget.dart';
+import 'package:website_app/tasks/services_widget.dart';
+import 'package:website_app/tasks/skills_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -51,8 +53,11 @@ class _HomePageState extends State<HomePage> {
     double height = size.height;
     double width = size.width;
 
-    Offset skillsOffset = Offset(height*0.7, width*0.2);
-    Offset servicesOffset = Offset(height*0.4, width*0.3);
+    Offset skillsOffset = Offset(width*0.5, height*0.2);
+    Offset aboutOffset = Offset(width*0.35, height*0.05);
+    Offset servicesOffset = Offset(width*0.15, height*0.1);
+    Offset projectOffset = Offset(width*0.15, height*0.32);
+
 
     return Scaffold(
       body: MouseRegion(
@@ -91,7 +96,7 @@ class _HomePageState extends State<HomePage> {
 
                     Positioned(
                       top: skillsOffset.dy,
-                      left: skillsOffset.dx,
+                      left: skillsOffset.dx-50,
                       child: const SkillsWidget(),
                     ),
                     
@@ -99,6 +104,18 @@ class _HomePageState extends State<HomePage> {
                       top: servicesOffset.dy,
                       left: servicesOffset.dx,
                       child: const ServicesWidget(),
+                    ),
+
+                    Positioned(
+                      top: projectOffset.dy,
+                      left: projectOffset.dx,
+                      child: const ProjectWidget(),
+                    ),
+
+                    Positioned(
+                      top: aboutOffset.dy,
+                      left: aboutOffset.dx,
+                      child: const AboutWidget(),
                     ),
                   ],
                 ),
