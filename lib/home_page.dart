@@ -53,8 +53,8 @@ class _HomePageState extends State<HomePage> {
     double height = size.height;
     double width = size.width;
 
-    Offset skillsOffset = Offset(width*0.5, height*0.2);
-    Offset aboutOffset = Offset(width*0.35, height*0.05);
+    Offset aboutOffset = Offset(width*0.39, height*0.18);
+    Offset skillsOffset = Offset(width*0.35, height*0.05);
     Offset servicesOffset = Offset(width*0.15, height*0.1);
     Offset projectOffset = Offset(width*0.15, height*0.32);
 
@@ -86,38 +86,40 @@ class _HomePageState extends State<HomePage> {
             children: [
               CustomPaint(
                 painter: DottedBackgroundPainter(backgroundColor: Colors.grey, zoomLevel: zoomLevel),
-                child: Stack(
-                  children: [
-
-                    CustomPaint(
-                      size: Size(width, height), // Set the size of the canvas
-                      painter: LinePainter(),
-                    ),
-
-                    Positioned(
-                      top: skillsOffset.dy,
-                      left: skillsOffset.dx-50,
-                      child: const SkillsWidget(),
-                    ),
-                    
-                    Positioned(
-                      top: servicesOffset.dy,
-                      left: servicesOffset.dx,
-                      child: const ServicesWidget(),
-                    ),
-
-                    Positioned(
-                      top: projectOffset.dy,
-                      left: projectOffset.dx,
-                      child: const ProjectWidget(),
-                    ),
-
-                    Positioned(
-                      top: aboutOffset.dy,
-                      left: aboutOffset.dx,
-                      child: const AboutWidget(),
-                    ),
-                  ],
+                child: SingleChildScrollView(
+                  child: Stack(
+                    children: [
+                  
+                      CustomPaint(
+                        size: Size(width, height), // Set the size of the canvas
+                        painter: LinePainter(),
+                      ),
+                  
+                      Positioned(
+                        top: skillsOffset.dy,
+                        left: skillsOffset.dx,
+                        child: const SkillsWidget(),
+                      ),
+                      
+                      Positioned(
+                        top: servicesOffset.dy,
+                        left: servicesOffset.dx,
+                        child: const ServicesWidget(),
+                      ),
+                  
+                      Positioned(
+                        top: projectOffset.dy,
+                        left: projectOffset.dx,
+                        child: const ProjectWidget(),
+                      ),
+                  
+                      Positioned(
+                        top: aboutOffset.dy,
+                        left: aboutOffset.dx,
+                        child: const AboutWidget(),
+                      ),
+                    ],
+                  ),
                 ),
               ),
 
