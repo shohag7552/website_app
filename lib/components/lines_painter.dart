@@ -11,15 +11,19 @@ class LinePainter extends CustomPainter {
     List<List<Offset>> lines = [
       [Offset(size.width*0.4, size.height * 0.1), Offset(size.width*0.6, size.height * 0.1)], //Top horizontal line
       [Offset(size.width / 2, size.height * 0.1), Offset(size.width / 2, size.height * 0.9)], // Main vertical line
-      [Offset(size.width / 2, size.height * 0.25), Offset(size.width * 0.2, size.height * 0.25)], // Left horizontal line
-      [Offset(size.width * 0.2, size.height * 0.15), Offset(size.width * 0.2, size.height * 0.37)], // Left vertical line
-      [Offset(size.width / 2, size.height * 0.25), Offset(size.width * 0.8, size.height * 0.25)], // Right horizontal line
-      [Offset(size.width * 0.8, size.height * 0.25), Offset(size.width * 0.8, size.height * 0.95)], // Right vertical line
-      [Offset(size.width / 2, size.height * 0.45), Offset(size.width * 0.45, size.height * 0.45)], // Smaller left horizontal line
-      [Offset(size.width / 2, size.height * 0.45), Offset(size.width * 0.6, size.height * 0.45)], // Smaller right horizontal line
+      [Offset(size.width / 2, size.height * 0.3), Offset(size.width * 0.15, size.height * 0.3)], // Left horizontal line
+      [Offset(size.width * 0.15, size.height * 0.2), Offset(size.width * 0.15, size.height * 0.37)], // Left vertical line
+      [Offset(size.width / 2, size.height * 0.3), Offset(size.width * 0.8, size.height * 0.3)], // Right horizontal line
+      [Offset(size.width * 0.8, size.height * 0.3), Offset(size.width * 0.8, size.height * 0.95)], // Right vertical line
+      [Offset(size.width / 2, size.height * 0.40), Offset(size.width * 0.30, size.height * 0.40)], // Smaller left horizontal line
+      [Offset(size.width / 2, size.height * 0.40), Offset(size.width * 0.6, size.height * 0.40)], // Smaller right horizontal line
       [Offset(size.width / 2, size.height * 0.7), Offset(size.width * 0.35, size.height * 0.7)], // Another left horizontal line
       [Offset(size.width / 2, size.height * 0.75), Offset(size.width * 0.55, size.height * 0.75)], // Another right horizontal line
       [Offset(size.width * 0.4, size.height * 0.9), Offset(size.width / 2, size.height * 0.9)], // Another vertical line
+      [Offset(size.width * 0.8, size.height * 0.4), Offset(size.width * 0.9, size.height * 0.4)], // Right vertical line's right horizontal line
+      [Offset(size.width * 0.75, size.height * 0.5), Offset(size.width * 0.8, size.height * 0.5)], // Right vertical line's left horizontal line
+      [Offset(size.width * 0.8, size.height * 0.6), Offset(size.width * 0.9, size.height * 0.6)], // Right vertical line's vertical line
+
     ];
 
     // Draw lines
@@ -32,10 +36,10 @@ class LinePainter extends CustomPainter {
 
     List<Offset> dots = [
       Offset(size.width / 2, size.height * 0.1),
-      Offset(size.width / 2, size.height * 0.25),
-      Offset(size.width * 0.2, size.height * 0.25),
-      Offset(size.width * 0.8, size.height * 0.25),
-      Offset(size.width / 2, size.height * 0.45),
+      Offset(size.width / 2, size.height * 0.3),
+      Offset(size.width * 0.15, size.height * 0.3),
+      Offset(size.width * 0.8, size.height * 0.3),
+      Offset(size.width / 2, size.height * 0.40),
       Offset(size.width * 0.8, size.height * 0.95),
       Offset(size.width / 2, size.height * 0.7),
       Offset(size.width / 2, size.height * 0.75),

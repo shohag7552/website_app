@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:website_app/commons/blue_box_widget.dart';
 import 'package:website_app/const/dimentions.dart';
 import 'package:website_app/const/text_style.dart';
 class AboutWidget extends StatelessWidget {
@@ -6,14 +7,8 @@ class AboutWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return BlueBoxWidget(
       width: 250,
-      padding: const EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        color: Dimentions.cardColor,
-        borderRadius: BorderRadius.circular(Dimentions.radiusSmall),
-        border: Border.all(color: Dimentions.blackColor, width: 1.2),
-      ),
       child: Row(children: [
 
         Container(
@@ -35,20 +30,19 @@ class AboutWidget extends StatelessWidget {
           child: Column(
             // crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('About Me', style: Style.textStyleBold),
+              Text("Hi, I'm Mehedi", style: Style.textStyleBold),
               const SizedBox(height: 5),
 
               Text(
-                'I am a Flutter Developer with experience in building apps. I have a passion for creating beautiful and functional user interfaces.',
+                'I am an one man agency that spitalize in App Development using Flutter.',
                 style: Style.textStyleNormal, textAlign: TextAlign.center,
               ),
               const SizedBox(height: 5),
 
-              Row(mainAxisAlignment: MainAxisAlignment.center, spacing: 5, children: [
+              Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                 IconButton(onPressed: (){}, icon: Icon(Icons.facebook_outlined, color: Dimentions.blackColor, size: 16)),
-                Icon(Icons.access_alarm, color: Dimentions.blackColor, size: 16),
-                Icon(Icons.mail_outline, color: Dimentions.blackColor, size: 16),
-
+                IconButton(onPressed: (){}, icon: Icon(Icons.access_alarm, color: Dimentions.blackColor, size: 16)),
+                IconButton(onPressed: (){}, icon: Icon(Icons.mail_outline, color: Dimentions.blackColor, size: 16)),
 
               ]),
 
