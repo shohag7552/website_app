@@ -15,8 +15,11 @@ class Dimentions {
   static Offset skillsOffset = const Offset(100, 200); // Example position for SkillsWidget
   static Offset servicesOffset = const Offset(300, 400); // Example position for ServicesWidget
 
-  static const Color blackColor = Color.fromARGB(255, 35, 35, 35); // Large radius
-  static const Color whiteColor = Colors.white; // Large radius
-  static const Color cardColor = Color.fromARGB(255, 46, 207, 231); // Large radius
-  static const Color clipColor = Color.fromARGB(255, 36, 144, 161); // Large radius
+  static const Color blackColor = Color.fromARGB(255, 35, 35, 35); 
+  static const Color whiteColor = Colors.white; // White color
+  static const Color cardColor = Color.fromARGB(255, 46, 207, 231); // Card color
+  // static const Color cardColor = Color.fromARGB(255, 237, 142, 175); // Card color
+
+  static const Color clipColor = Color.fromARGB(255, 36, 144, 161); // Clip color
+  static const Color backgroundColor = Color.fromARGB(255, 227, 226, 226); // Clip text color
 }

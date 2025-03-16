@@ -12,7 +12,7 @@ class LinePainter extends CustomPainter {
       [Offset(size.width*0.4, size.height * 0.1), Offset(size.width*0.6, size.height * 0.1)], //Top horizontal line
       [Offset(size.width / 2, size.height * 0.1), Offset(size.width / 2, size.height * 0.9)], // Main vertical line
       [Offset(size.width / 2, size.height * 0.3), Offset(size.width * 0.15, size.height * 0.3)], // Left horizontal line
-      [Offset(size.width * 0.15, size.height * 0.2), Offset(size.width * 0.15, size.height * 0.37)], // Left vertical line
+      [Offset(size.width * 0.15, size.height * 0), Offset(size.width * 0.15, size.height * 0.37)], // Left vertical line
       [Offset(size.width / 2, size.height * 0.3), Offset(size.width * 0.8, size.height * 0.3)], // Right horizontal line
       [Offset(size.width * 0.8, size.height * 0.3), Offset(size.width * 0.8, size.height * 0.95)], // Right vertical line
       [Offset(size.width / 2, size.height * 0.40), Offset(size.width * 0.30, size.height * 0.40)], // Smaller left horizontal line
@@ -21,8 +21,8 @@ class LinePainter extends CustomPainter {
       [Offset(size.width / 2, size.height * 0.75), Offset(size.width * 0.55, size.height * 0.75)], // Another right horizontal line
       [Offset(size.width * 0.4, size.height * 0.9), Offset(size.width / 2, size.height * 0.9)], // Another vertical line
       [Offset(size.width * 0.8, size.height * 0.4), Offset(size.width * 0.9, size.height * 0.4)], // Right vertical line's right horizontal line
-      [Offset(size.width * 0.75, size.height * 0.5), Offset(size.width * 0.8, size.height * 0.5)], // Right vertical line's left horizontal line
-      [Offset(size.width * 0.8, size.height * 0.6), Offset(size.width * 0.9, size.height * 0.6)], // Right vertical line's vertical line
+      [Offset(size.width * 0.75, size.height * 0.56), Offset(size.width * 0.8, size.height * 0.56)], // Right vertical line's left horizontal line
+      [Offset(size.width * 0.8, size.height * 0.65), Offset(size.width * 0.9, size.height * 0.65)], // Right vertical line's vertical line
 
     ];
 

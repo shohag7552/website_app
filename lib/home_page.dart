@@ -2,14 +2,19 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:website_app/const/dimentions.dart';
 import 'package:website_app/tasks/about_widget.dart';
 import 'package:website_app/components/custom_cursor_widget.dart';
 import 'package:website_app/components/doted_background_painter.dart';
 import 'package:website_app/components/lines_painter.dart';
+import 'package:website_app/tasks/animated_food_widget.dart';
 import 'package:website_app/tasks/build_new_widget.dart';
+import 'package:website_app/tasks/growfresh_widget.dart';
 import 'package:website_app/tasks/improve_existing_widget.dart';
+import 'package:website_app/tasks/note_app_widget.dart';
 import 'package:website_app/tasks/project_stackfood_widget.dart';
 import 'package:website_app/tasks/project_6ammart_widget.dart';
+import 'package:website_app/tasks/protfolio_website_widget.dart';
 import 'package:website_app/tasks/services_widget.dart';
 import 'package:website_app/tasks/skills_widget.dart';
 import 'package:website_app/tasks/what_you_need_widget.dart';
@@ -111,6 +116,14 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     // Offset whatYouNeedOffset = Offset(width*0.4, height*0.75);
     Offset whatYouNeedOffset = Offset(width*0.37, 800);
 
+     Offset noteAppOffset = Offset(width*0.85, 550);
+
+     Offset protfolioOffset = Offset(width*0.85, 900);
+
+     Offset animatedFoodOffset = Offset(width*0.65, 800);
+
+     Offset growfreshOffset = Offset(width*0.1, 550);
+
 
     return Scaffold(
       body: MouseRegion(
@@ -134,7 +147,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
           child: Stack(
             children: [
               CustomPaint(
-                painter: DottedBackgroundPainter(backgroundColor: Colors.grey, zoomLevel: zoomLevel),
+                painter: DottedBackgroundPainter(backgroundColor: Dimentions.backgroundColor, zoomLevel: zoomLevel),
                 child: SingleChildScrollView(
                   child: Stack(
                     children: [
@@ -191,6 +204,30 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                         top: whatYouNeedOffset.dy,
                         left: whatYouNeedOffset.dx,
                         child: const WhatYouNeedWidget(),
+                      ),
+
+                      Positioned(
+                        top: noteAppOffset.dy,
+                        left: noteAppOffset.dx,
+                        child: const NoteAppWidget(),
+                      ),
+
+                      Positioned(
+                        top: protfolioOffset.dy,
+                        left: protfolioOffset.dx,
+                        child: const ProtfolioWebsiteWidget(),
+                      ),
+
+                      Positioned(
+                        top: animatedFoodOffset.dy,
+                        left: animatedFoodOffset.dx,
+                        child: const AnimatedFoodWidget(),
+                      ),
+
+                      Positioned(
+                        top: growfreshOffset.dy,
+                        left: growfreshOffset.dx,
+                        child: const GrowfreshWidget(),
                       ),
                               
                     ],
