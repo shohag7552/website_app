@@ -34,9 +34,9 @@ class _WhatYouNeedWidgetState extends State<WhatYouNeedWidget> {
   final String text1 = "I need help developpin";
   final String text2 = "app, that need to work on the";
   final String text3 = "platform. The budget for this project is";
-  final String text4 = "The app should have a";
+  final String text4 = ". The app should have a";
   final String text5 = "design, and the app should be develop in";
-  final String text6 = "The project should start";
+  final String text6 = ". The project should start";
 
   Future<void> sendEmail(String userEmail, String message) async {
   const serviceId = Utils.serviceId;
