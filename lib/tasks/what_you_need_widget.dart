@@ -1,7 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:website_app/commons/blue_box_widget.dart';
 import 'package:website_app/commons/custom_button.dart';
 import 'package:website_app/const/text_style.dart';
+import 'package:http/http.dart' as http;
+import 'package:website_app/const/utils.dart';
 
 const List<String> dropdownList1 = <String>['a new', 'an existing'];
 const List<String> dropdownList2 = <String>['Android', 'iOS', 'Android & iOS', "I don't know"];
@@ -25,24 +29,73 @@ class _WhatYouNeedWidgetState extends State<WhatYouNeedWidget> {
   String dropdownValue4 = dropdownList4.first;
   String dropdownValue5 = dropdownList5.first;
   String dropdownValue6 = dropdownList6.first;
+  final TextEditingController _controller = TextEditingController();
+
+  final String text1 = "I need help developpin";
+  final String text2 = "app, that need to work on the";
+  final String text3 = "platform. The budget for this project is";
+  final String text4 = "The app should have a";
+  final String text5 = "design, and the app should be develop in";
+  final String text6 = "The project should start";
+
+  Future<void> sendEmail(String userEmail, String message) async {
+  const serviceId = Utils.serviceId;
+  const templateId = Utils.templateId;
+  const publicKey = Utils.publicKey;
+
+  final url = Uri.parse("https://api.emailjs.com/api/v1.0/email/send");
+  final response = await http.post(
+    url,
+    headers: {"Content-Type": "application/json"},
+    body: json.encode({
+      "service_id": serviceId,
+      "template_id": templateId,
+      "user_id": publicKey,
+      "template_params": {
+        "title": 'New project request',
+        "name": 'John Doe',
+        "time": DateTime.now().toString(),
+        "email": userEmail,
+        "message": message,
+      }
+    }),
+  );
+
+  if (response.statusCode == 200) {
+    print("Email sent successfully!");
+   
+    _controller.clear();
+
+    dropdownValue1 = dropdownList1.first;
+    dropdownValue2 = dropdownList2.first;
+    dropdownValue3 = dropdownList3.first;
+    dropdownValue4 = dropdownList4.first; 
+
+  } else {
+    print("Failed to send email: ${response.body}");
+  }
+}
 
   @override
   Widget build(BuildContext context) {
 
     return BlueBoxWidget(
       width: 300, 
-      child: Column(children: [
-        Text("Tell Me What You Need", style: Style.textStyleBold),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
+        Align(alignment: Alignment.center, child: Text("Tell Me What You Need", style: Style.textStyleBold)),
         const SizedBox(height: 5),
 
-        Text(
-          "Tell me what you need, so we can schudle a free consultation call.",
-          style: Style.textStyleNormal, textAlign: TextAlign.center,
+        Align(
+          alignment: Alignment.center, 
+          child: Text(
+            "Tell me what you need, so we can schudle a free consultation call.",
+            style: Style.textStyleNormal.copyWith(fontWeight: FontWeight.w700), textAlign: TextAlign.center,
+          ),
         ),
         const SizedBox(height: 10),
 
         Wrap(crossAxisAlignment: WrapCrossAlignment.center, children: [
-          Text("I need help developpin", style: Style.textStyleNormal),
+          Text(text1, style: Style.textStyleNormal),
           const SizedBox(width: 5),
 
           SizedBox(
@@ -68,7 +121,7 @@ class _WhatYouNeedWidgetState extends State<WhatYouNeedWidget> {
           ),
           const SizedBox(width: 5),
 
-          Text("app, that need to work on the", style: Style.textStyleNormal),
+          Text(text2, style: Style.textStyleNormal),
           const SizedBox(width: 5),
 
           SizedBox(
@@ -93,7 +146,7 @@ class _WhatYouNeedWidgetState extends State<WhatYouNeedWidget> {
           ),
           const SizedBox(width: 5),
 
-          Text("platform. The budget for this project is", style: Style.textStyleNormal),
+          Text(text3, style: Style.textStyleNormal),
           const SizedBox(width: 5),
 
           SizedBox(
@@ -118,7 +171,7 @@ class _WhatYouNeedWidgetState extends State<WhatYouNeedWidget> {
           ),
           const SizedBox(width: 5),
 
-          Text("The app should have a", style: Style.textStyleNormal),
+          Text(text4, style: Style.textStyleNormal),
           const SizedBox(width: 5),
 
           SizedBox(
@@ -143,7 +196,7 @@ class _WhatYouNeedWidgetState extends State<WhatYouNeedWidget> {
           ),
           const SizedBox(width: 5),
 
-          Text("design, and the app should be develop in", style: Style.textStyleNormal),
+          Text(text5, style: Style.textStyleNormal),
           const SizedBox(width: 5),
 
           SizedBox(
@@ -168,9 +221,9 @@ class _WhatYouNeedWidgetState extends State<WhatYouNeedWidget> {
           ),
           const SizedBox(width: 5),
 
-          Text("The project should start ", style: Style.textStyleNormal),
+          Text(text6, style: Style.textStyleNormal),
           const SizedBox(width: 5),
-          
+
           SizedBox(
             height: 25,
             child: DropdownButton<String>(
@@ -193,8 +246,51 @@ class _WhatYouNeedWidgetState extends State<WhatYouNeedWidget> {
           ),
 
         ]),
+        const SizedBox(height: 10),
 
-        CustomButton(text: "Submit", onPressed: (){}),
+        Wrap(alignment: WrapAlignment.start, children: [
+          Text("Please provide your email so I may reach you: ", style: Style.textStyleNormal),
+          const SizedBox(width: 5),
+
+          Container(
+            // color: Colors.green,
+            width: 200,
+            height: 30,
+            child: TextField(
+             controller: _controller,
+             keyboardType: TextInputType.emailAddress,
+             style: Style.textStyleNormal,
+             scrollPadding: EdgeInsets.zero,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                hintText: 'Enter your email',
+                hintStyle: Style.textStyleNormal,
+              ),
+            ),
+          ),
+        ]),
+
+        const SizedBox(height: 10),
+
+        Align(
+          alignment: Alignment.center, 
+          child: CustomButton(
+            text: "Submit",
+            onPressed: (){
+
+              String message = "$text1 $dropdownValue1 $text2 $dropdownValue2 $text3 $dropdownValue3 $text4 $dropdownValue4 $text5 $dropdownValue5 $text6 $dropdownValue6";
+              String userEmail = _controller.text;
+
+              if(userEmail.isEmpty){
+                print("Please provide your email");
+                return;
+              }else {
+                sendEmail(userEmail, message);
+              }
+
+            },
+          ),
+        ),
 
       ]),
     );

@@ -103,7 +103,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     Offset servicesOffset = Offset(width*0.55, 60);
 
     // Offset projectOffset = Offset(width*0.15, height*0.32);
-    Offset projectMartOffset = Offset(width*0.35, 1000);
+    Offset projectMartOffset = Offset(width*0.33, 1100);
 
     Offset projectStackfoodOffset = Offset(width*0.55, 1100);
 
@@ -114,7 +114,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     Offset improveExistingOffset = Offset(width*0.52, 550);
 
     // Offset whatYouNeedOffset = Offset(width*0.4, height*0.75);
-    Offset whatYouNeedOffset = Offset(width*0.37, 800);
+    Offset whatYouNeedOffset = Offset(width*0.37, 750);
 
      Offset noteAppOffset = Offset(width*0.85, 550);
 

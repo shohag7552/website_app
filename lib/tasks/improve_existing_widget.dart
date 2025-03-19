@@ -8,7 +8,7 @@ class ImproveExistingWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlueBoxWidget(
-      width: 200, 
+      width: 220, 
       child: Column(children: [
         Text("Or Let's Improve Your Existing App", style: Style.textStyleBold),
         const SizedBox(height: 5),

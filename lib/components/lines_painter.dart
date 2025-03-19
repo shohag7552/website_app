@@ -17,7 +17,7 @@ class LinePainter extends CustomPainter {
       [Offset(size.width * 0.8, size.height * 0.3), Offset(size.width * 0.8, size.height * 0.95)], // Right vertical line
       [Offset(size.width / 2, size.height * 0.40), Offset(size.width * 0.30, size.height * 0.40)], // Smaller left horizontal line
       [Offset(size.width / 2, size.height * 0.40), Offset(size.width * 0.6, size.height * 0.40)], // Smaller right horizontal line
-      [Offset(size.width / 2, size.height * 0.7), Offset(size.width * 0.35, size.height * 0.7)], // Another left horizontal line
+      [Offset(size.width / 2, size.height * 0.75), Offset(size.width * 0.35, size.height * 0.75)], // Another left horizontal line
       [Offset(size.width / 2, size.height * 0.75), Offset(size.width * 0.55, size.height * 0.75)], // Another right horizontal line
       [Offset(size.width * 0.4, size.height * 0.9), Offset(size.width / 2, size.height * 0.9)], // Another vertical line
       [Offset(size.width * 0.8, size.height * 0.4), Offset(size.width * 0.9, size.height * 0.4)], // Right vertical line's right horizontal line
