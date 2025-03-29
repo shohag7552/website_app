@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:website_app/const/dimentions.dart';
@@ -10,6 +9,7 @@ import 'package:website_app/components/lines_painter.dart';
 import 'package:website_app/tasks/animated_food_widget.dart';
 import 'package:website_app/tasks/build_new_widget.dart';
 import 'package:website_app/tasks/growfresh_widget.dart';
+import 'package:website_app/tasks/header_widget.dart';
 import 'package:website_app/tasks/improve_existing_widget.dart';
 import 'package:website_app/tasks/note_app_widget.dart';
 import 'package:website_app/tasks/project_stackfood_widget.dart';
@@ -28,8 +28,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin {
 
- double dotSpacing = 20.0;
-
   final TransformationController _transformationController = TransformationController();
   double zoomLevel = 1.0;
   Offset pointer = Offset.zero;
@@ -42,11 +40,12 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
   List<Offset> _trailingPoints = [];
   Timer? _trailTimer;
 
-  void _resetView() {
-    _transformationController.value = Matrix4.identity(); // Reset to original position
-  }
+  final GlobalKey _aboutKey = GlobalKey(); 
+  final GlobalKey _contactKey = GlobalKey();
+  final GlobalKey _homeKey = GlobalKey();
+  final GlobalKey _serviceKey = GlobalKey();
 
-@override
+  @override
   void initState() {
     super.initState();
 
@@ -126,6 +125,19 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
 
 
     return Scaffold(
+      appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(60),
+          // child: AppBar(title: InkWell(
+          //   onTap: (){
+          //     _aboutKey.currentContext!.findRenderObject()!.showOnScreen();
+          //     _zoomIn();
+          //     // _transformationController.value = 0.4;
+          //     // _transformationController.value.getMaxScaleOnAxis();
+          //   },
+          //   child: Text('click here'),
+          // ),),
+          child: HeaderWidget(aboutKey: _aboutKey, servicesKey: _serviceKey, contactKey: _contactKey, transformationController: _transformationController),
+        ),
       body: MouseRegion(
         cursor: SystemMouseCursors.none, // Hide system cursor
         onHover: _onHover,
@@ -141,12 +153,13 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
             });
           },
         child: InteractiveViewer(
-          minScale: 0.1,
-          maxScale: 5.0,
+          minScale: 0.01,
+          maxScale: 4.0,
           transformationController: _transformationController,
           child: Stack(
             children: [
               CustomPaint(
+                // size: Size(2000, 1500),
                 painter: DottedBackgroundPainter(backgroundColor: Dimentions.backgroundColor, zoomLevel: zoomLevel),
                 child: SingleChildScrollView(
                   child: Stack(
@@ -167,7 +180,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                       Positioned(
                         top: servicesOffset.dy,
                         left: servicesOffset.dx,
-                        child: const ServicesWidget(),
+                        child: ServicesWidget(key: _serviceKey),
                       ),
                   
                       Positioned(
@@ -183,9 +196,10 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                       ),
                   
                       Positioned(
+                        // key: _aboutKey,
                         top: aboutOffset.dy,
                         left: aboutOffset.dx,
-                        child: const AboutWidget(),
+                        child: AboutWidget(key: _aboutKey,),
                       ),
                               
                       Positioned(
@@ -203,7 +217,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                       Positioned(
                         top: whatYouNeedOffset.dy,
                         left: whatYouNeedOffset.dx,
-                        child: const WhatYouNeedWidget(),
+                        child: WhatYouNeedWidget(key: _contactKey),
                       ),
 
                       Positioned(
