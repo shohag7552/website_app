@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:website_app/commons/clip_widget.dart';
 import 'package:website_app/commons/white_box_widget.dart';
 import 'package:website_app/const/images.dart';
@@ -46,8 +47,12 @@ class ProjectStackfoodWidget extends StatelessWidget {
             const SizedBox(width: 5),
 
             InkWell(
-              onTap: () {
-                
+              onTap: () async {
+                final Uri _url = Uri.parse('https://stackfood.app/online-food-delivery-software-project-live-demo/');
+
+                if (!await launchUrl(_url)) {
+                  throw Exception('Could not launch $_url');
+                  }
               },
               child: Text("link", style: Style.textStyleBold.copyWith(fontSize: 10)),
             ),
