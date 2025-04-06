@@ -123,15 +123,15 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
 
         bool webView = constraints.maxWidth > 1090;
         bool tabletView = constraints.maxWidth > 600 && constraints.maxWidth < 1090;
-        bool mobileView = constraints.maxWidth < 600;
+        bool mobileView = constraints.maxWidth < 700;
         print('webView: $webView, tabletView: $tabletView, mobileView: $mobileView');
 
         if(mobileView) {
           skillsOffset = Offset(width*0.1, 60);
           servicesOffset = Offset(width*0.3, 350);
           aboutOffset = Offset(width*0.25, 600);
-          buildNewOffset = Offset(width*0.02, 750);
-          improveExistingOffset = Offset(width*0.53, 750);
+          buildNewOffset = Offset(width*0.02, 800);
+          improveExistingOffset = Offset(width*0.53, 800);
           whatYouNeedOffset = Offset(width*0.2, 1000);
           projectMartOffset = Offset(width*0.1, 1350);
           projectStackfoodOffset = Offset(width*0.6, 1350);
