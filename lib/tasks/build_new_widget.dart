@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:website_app/commons/blue_box_widget.dart';
 import 'package:website_app/commons/custom_button.dart';
+import 'package:website_app/const/images.dart';
 import 'package:website_app/const/text_style.dart';
 
 class BuildNewWidget extends StatelessWidget {
@@ -14,12 +15,14 @@ class BuildNewWidget extends StatelessWidget {
         Text("Let's Build Something New", style: Style.textStyleBold),
         const SizedBox(height: 5),
 
-        Image.network(
-          // 'https://www.hashstudioz.com/blog/wp-content/uploads/2020/12/key-differences-between-android-and-ios.png',
-          'https://thumbs.web.sapo.io/?W=1550&H=0&png=1&delay_optim=1&webp=1&epic=MjYyNmyYY+GQB/+4UOAlA+WVGr26ksUiNqbz39N8Tg4pskaIiRxTlLM8HTcImmqZymr4MZUFL1S9Bhcdxm51ZWy1XyAiOV01ma/OyDYgq0oXk2k=',
-          width: 120,
-          fit: BoxFit.contain,
-        ),
+        Image.asset(Images.buildNew, width: 120, fit: BoxFit.contain),
+
+        // Image.network(
+        //   // 'https://www.hashstudioz.com/blog/wp-content/uploads/2020/12/key-differences-between-android-and-ios.png',
+        //   'https://thumbs.web.sapo.io/?W=1550&H=0&png=1&delay_optim=1&webp=1&epic=MjYyNmyYY+GQB/+4UOAlA+WVGr26ksUiNqbz39N8Tg4pskaIiRxTlLM8HTcImmqZymr4MZUFL1S9Bhcdxm51ZWy1XyAiOV01ma/OyDYgq0oXk2k=',
+        //   width: 120,
+        //   fit: BoxFit.contain,
+        // ),
         const SizedBox(height: 10),
 
         Text(

@@ -1,8 +1,10 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:website_app/commons/blue_box_widget.dart';
 import 'package:website_app/commons/custom_button.dart';
+import 'package:website_app/commons/custom_toast.dart';
 import 'package:website_app/const/text_style.dart';
 import 'package:http/http.dart' as http;
 import 'package:website_app/const/utils.dart';
@@ -23,6 +25,8 @@ class WhatYouNeedWidget extends StatefulWidget {
 
 class _WhatYouNeedWidgetState extends State<WhatYouNeedWidget> {
 
+  bool isLoading = false;
+
   String dropdownValue1 = dropdownList1.first;
   String dropdownValue2 = dropdownList2.first;
   String dropdownValue3 = dropdownList3.first;
@@ -39,42 +43,51 @@ class _WhatYouNeedWidgetState extends State<WhatYouNeedWidget> {
   final String text6 = ". The project should start";
 
   Future<void> sendEmail(String userEmail, String message) async {
-  const serviceId = Utils.serviceId;
-  const templateId = Utils.templateId;
-  const publicKey = Utils.publicKey;
+    setState(() {
+      isLoading = true;
+    });
+    const serviceId = Utils.serviceId;
+    const templateId = Utils.templateId;
+    const publicKey = Utils.publicKey;
 
-  final url = Uri.parse("https://api.emailjs.com/api/v1.0/email/send");
-  final response = await http.post(
-    url,
-    headers: {"Content-Type": "application/json"},
-    body: json.encode({
-      "service_id": serviceId,
-      "template_id": templateId,
-      "user_id": publicKey,
-      "template_params": {
-        "title": 'New project request',
-        "name": 'John Doe',
-        "time": DateTime.now().toString(),
-        "email": userEmail,
-        "message": message,
-      }
-    }),
-  );
+    final url = Uri.parse("https://api.emailjs.com/api/v1.0/email/send");
+    final response = await http.post(
+      url,
+      headers: {"Content-Type": "application/json"},
+      body: json.encode({
+        "service_id": serviceId,
+        "template_id": templateId,
+        "user_id": publicKey,
+        "template_params": {
+          "title": 'New project request',
+          "name": 'John Doe',
+          "time": DateTime.now().toString(),
+          "email": userEmail,
+          "message": message,
+        }
+      }),
+    );
 
-  if (response.statusCode == 200) {
-    print("Email sent successfully!");
-   
-    _controller.clear();
+    if (response.statusCode == 200) {
+      print("Email sent successfully!");
+      customToast("Email sent successfully!");
+    
+      _controller.clear();
 
-    dropdownValue1 = dropdownList1.first;
-    dropdownValue2 = dropdownList2.first;
-    dropdownValue3 = dropdownList3.first;
-    dropdownValue4 = dropdownList4.first; 
+      dropdownValue1 = dropdownList1.first;
+      dropdownValue2 = dropdownList2.first;
+      dropdownValue3 = dropdownList3.first;
+      dropdownValue4 = dropdownList4.first; 
 
-  } else {
-    print("Failed to send email: ${response.body}");
+    } else {
+      print("Failed to send email: ${response.body}");
+      customToast("Failed to send email: ${response.body}", isError: true);
+    }
+    setState(() {
+      isLoading = false;
+    });
+    
   }
-}
 
   @override
   Widget build(BuildContext context) {
@@ -282,7 +295,7 @@ class _WhatYouNeedWidgetState extends State<WhatYouNeedWidget> {
               String userEmail = _controller.text;
 
               if(userEmail.isEmpty){
-                print("Please provide your email");
+                customToast("Please provide your email", isError: true);
                 return;
               }else {
                 sendEmail(userEmail, message);
