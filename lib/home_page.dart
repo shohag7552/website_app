@@ -104,7 +104,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
 
     Offset buildNewOffset = Offset(width*0.3, 550);
 
-    Offset improveExistingOffset = Offset(width*0.52, 550);
+    Offset improveExistingOffset = Offset(width*0.58, 550);
 
     Offset whatYouNeedOffset = Offset(width*0.37, 750);
 
@@ -112,7 +112,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
 
     Offset protfolioOffset = Offset(width*0.85, 900);
 
-    Offset animatedFoodOffset = Offset(width*0.65, 800);
+    Offset animatedFoodOffset = Offset(width*0.67, 800);
 
     Offset growfreshOffset = Offset(width*0.1, 550);
 
@@ -153,8 +153,8 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
               systemOverlayStyle: SystemUiOverlayStyle.light,
             ),
           body: MouseRegion(
-            cursor: SystemMouseCursors.none, // Hide system cursor
-            onHover: _onHover,
+            cursor: webView ? SystemMouseCursors.none : MouseCursor.defer, // Hide system cursor
+            onHover: webView ? _onHover : null,
             child: Listener(
               onPointerDown: (_) {
                 setState(() {
@@ -176,93 +176,108 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                     // size: Size(2000, 1500),
                     painter: DottedBackgroundPainter(backgroundColor: Dimentions.backgroundColor, zoomLevel: zoomLevel),
                     child: SingleChildScrollView(
-                      child: Stack(
-                        children: [
-                      
-                          CustomPaint(
-                            // size: Size(width, height),
-                            size: webView ? Size(2000, 1500) : Size(1000, 3000), // Set the size of the canvas
-                            painter: webView ? LinePainter() : MobileLinePainter(),
-                          ),
-                      
-                          Positioned(
-                            top: skillsOffset.dy,
-                            left: skillsOffset.dx,
-                            child: const SkillsWidget(),
-                          ),
+                      scrollDirection: Axis.horizontal,
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.vertical,
+                        child: SizedBox(
+                          width: webView ? 2000 : 1000,
+                          height: webView ? 1500 : 3000,
+                          child: Stack(
+                            children: [
                           
-                          Positioned(
-                            top: servicesOffset.dy,
-                            left: servicesOffset.dx,
-                            child: ServicesWidget(key: _serviceKey),
-                          ),
-                      
-                          Positioned(
-                            top: projectMartOffset.dy,
-                            left: projectMartOffset.dx,
-                            child: const Project6amMartWidget(),
-                          ),
+                              Builder(
+                                builder: (context) {
+                                  print('=====checkkkkk> ${constraints.maxWidth}, ${constraints.maxHeight}');
+                                  return CustomPaint(
+                                    // size: Size(width, height),
+                                    size: Size(constraints.maxWidth, 1500),
+                                    // size: webView ? Size(1500, 1500) : Size(1000, 3000), // Set the size of the canvas
+                                    painter: webView ? LinePainter() : MobileLinePainter(),
+                                  );
+                                }
+                              ),
+                          
+                              Positioned(
+                                top: skillsOffset.dy,
+                                left: skillsOffset.dx,
+                                child: const SkillsWidget(),
+                              ),
+                              
+                              Positioned(
+                                top: servicesOffset.dy,
+                                left: servicesOffset.dx,
+                                child: ServicesWidget(key: _serviceKey),
+                              ),
+                          
+                              Positioned(
+                                top: projectMartOffset.dy,
+                                left: projectMartOffset.dx,
+                                child: const Project6amMartWidget(),
+                              ),
+                                      
+                              Positioned(
+                                top: projectStackfoodOffset.dy,
+                                left: projectStackfoodOffset.dx,
+                                child: const ProjectStackfoodWidget(),
+                              ),
+                          
+                              Positioned(
+                                // key: _aboutKey,
+                                top: aboutOffset.dy,
+                                left: aboutOffset.dx,
+                                child: AboutWidget(key: _aboutKey,),
+                              ),
+                                      
+                              Positioned(
+                                top: buildNewOffset.dy,
+                                left: buildNewOffset.dx,
+                                child: const BuildNewWidget(),
+                              ),
+                                      
+                              Positioned(
+                                top: improveExistingOffset.dy,
+                                left: improveExistingOffset.dx,
+                                child: const ImproveExistingWidget(),
+                              ),
+                                      
+                              Positioned(
+                                top: whatYouNeedOffset.dy,
+                                left: whatYouNeedOffset.dx,
+                                child: WhatYouNeedWidget(key: _contactKey),
+                              ),
                                   
-                          Positioned(
-                            top: projectStackfoodOffset.dy,
-                            left: projectStackfoodOffset.dx,
-                            child: const ProjectStackfoodWidget(),
-                          ),
-                      
-                          Positioned(
-                            // key: _aboutKey,
-                            top: aboutOffset.dy,
-                            left: aboutOffset.dx,
-                            child: AboutWidget(key: _aboutKey,),
-                          ),
+                              Positioned(
+                                top: noteAppOffset.dy,
+                                left: noteAppOffset.dx,
+                                child: const NoteAppWidget(),
+                              ),
                                   
-                          Positioned(
-                            top: buildNewOffset.dy,
-                            left: buildNewOffset.dx,
-                            child: const BuildNewWidget(),
-                          ),
+                              Positioned(
+                                top: protfolioOffset.dy,
+                                left: protfolioOffset.dx,
+                                child: const ProtfolioWebsiteWidget(),
+                              ),
                                   
-                          Positioned(
-                            top: improveExistingOffset.dy,
-                            left: improveExistingOffset.dx,
-                            child: const ImproveExistingWidget(),
-                          ),
+                              Positioned(
+                                top: animatedFoodOffset.dy,
+                                left: animatedFoodOffset.dx,
+                                child: const AnimatedFoodWidget(),
+                              ),
                                   
-                          Positioned(
-                            top: whatYouNeedOffset.dy,
-                            left: whatYouNeedOffset.dx,
-                            child: WhatYouNeedWidget(key: _contactKey),
+                              Positioned(
+                                top: growfreshOffset.dy,
+                                left: growfreshOffset.dx,
+                                child: const GrowfreshWidget(),
+                              ),
+                                      
+                            ],
                           ),
-        
-                          Positioned(
-                            top: noteAppOffset.dy,
-                            left: noteAppOffset.dx,
-                            child: const NoteAppWidget(),
-                          ),
-        
-                          Positioned(
-                            top: protfolioOffset.dy,
-                            left: protfolioOffset.dx,
-                            child: const ProtfolioWebsiteWidget(),
-                          ),
-        
-                          Positioned(
-                            top: animatedFoodOffset.dy,
-                            left: animatedFoodOffset.dx,
-                            child: const AnimatedFoodWidget(),
-                          ),
-        
-                          Positioned(
-                            top: growfreshOffset.dy,
-                            left: growfreshOffset.dx,
-                            child: const GrowfreshWidget(),
-                          ),
-                                  
-                        ],
+                        ),
                       ),
                     ),
                   ),
         
+                 if(webView)
                   IgnorePointer(
                     child: Stack(
                       children: [

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 class LinePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
+    print(' size: $size');
     Paint paint = Paint()
       ..color = Colors.black
       ..strokeWidth = 0.5
