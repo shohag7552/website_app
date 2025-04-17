@@ -12,6 +12,10 @@ import 'package:website_app/tasks/growfresh_widget.dart';
 import 'package:website_app/tasks/header_widget.dart';
 import 'package:website_app/tasks/improve_existing_widget.dart';
 import 'package:website_app/tasks/note_app_widget.dart';
+import 'package:website_app/tasks/project_6ammart_delivery.dart';
+import 'package:website_app/tasks/project_6ammart_store.dart';
+import 'package:website_app/tasks/project_stackfood_delivery.dart';
+import 'package:website_app/tasks/project_stackfood_restaurant.dart';
 import 'package:website_app/tasks/project_stackfood_widget.dart';
 import 'package:website_app/tasks/project_6ammart_widget.dart';
 import 'package:website_app/tasks/protfolio_website_widget.dart';
@@ -100,7 +104,15 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
 
     Offset projectMartOffset = Offset(width*0.33, 1100);
 
+    Offset projectMartDeliveryOffset = Offset(width*0.33, 1400);
+
+    Offset projectMartStoreOffset = Offset(width*0.15, 1200);
+
     Offset projectStackfoodOffset = Offset(width*0.55, 1100);
+
+    Offset projectStackfoodRestaurantOffset = Offset(width*0.67, 1200);
+
+    Offset projectStackfoodDeliveryOffset = Offset(width*0.55, 1400);
 
     Offset buildNewOffset = Offset(width*0.3, 550);
 
@@ -181,16 +193,15 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                         scrollDirection: Axis.vertical,
                         child: SizedBox(
                           width: webView ? 2000 : 1000,
-                          height: webView ? 1500 : 3000,
+                          height: webView ? 2000 : 3000,
                           child: Stack(
                             children: [
                           
                               Builder(
                                 builder: (context) {
-                                  print('=====checkkkkk> ${constraints.maxWidth}, ${constraints.maxHeight}');
                                   return CustomPaint(
                                     // size: Size(width, height),
-                                    size: Size(constraints.maxWidth, 1500),
+                                    size: Size(constraints.maxWidth, 1600),
                                     // size: webView ? Size(1500, 1500) : Size(1000, 3000), // Set the size of the canvas
                                     painter: webView ? LinePainter() : MobileLinePainter(),
                                   );
@@ -214,11 +225,35 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                                 left: projectMartOffset.dx,
                                 child: const Project6amMartWidget(),
                               ),
+
+                              Positioned(
+                                top: projectMartDeliveryOffset.dy,
+                                left: projectMartDeliveryOffset.dx,
+                                child: const Project6amMartDelivery(),
+                              ),
+
+                              Positioned(
+                                top: projectMartStoreOffset.dy,
+                                left: projectMartStoreOffset.dx,
+                                child: const Project6amMartStore(),
+                              ),
                                       
                               Positioned(
                                 top: projectStackfoodOffset.dy,
                                 left: projectStackfoodOffset.dx,
                                 child: const ProjectStackfoodWidget(),
+                              ),
+
+                              Positioned(
+                                top: projectStackfoodRestaurantOffset.dy,
+                                left: projectStackfoodRestaurantOffset.dx,
+                                child: const ProjectStackfoodRestaurant(),
+                              ),
+
+                              Positioned(
+                                top: projectStackfoodDeliveryOffset.dy,
+                                left: projectStackfoodDeliveryOffset.dx,
+                                child: const ProjectStackfoodDelivery(),
                               ),
                           
                               Positioned(
