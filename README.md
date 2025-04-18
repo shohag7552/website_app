@@ -1,12 +1,9 @@
-# website_app
+# Flutter Protfolio web app
 
-A new Flutter project.
+# Runnable in [Flutter SDK 3.29.3]
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-Build web command [flutter build web --no-tree-shake-icons]
+## Build web command 
+[flutter build web --no-tree-shake-icons]
 
 ## Video Preview
 
