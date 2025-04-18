@@ -1,9 +1,8 @@
 # Flutter Protfolio web app
 
-# Runnable in ###Flutter SDK 3.29.3
+## Runnable in Flutter SDK 3.29.3
 
-## Build web command 
- flutter build web --no-tree-shake-icons
+## Build web command: flutter build web --no-tree-shake-icons
 
 ## Video Preview
 
