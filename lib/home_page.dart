@@ -93,10 +93,9 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    double height = size.height;
     double width = size.width;
 
-    Offset aboutOffset = Offset(width*0.39, 390);
+    Offset aboutOffset = Offset(width*0.39, 420);
 
     Offset skillsOffset = Offset(width*0.25, 60);
 
@@ -131,13 +130,11 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
 
     return LayoutBuilder(
       builder: (context, constraints) {
-        print('========width: ${constraints.maxWidth}, height: ${constraints.maxHeight}');
-
+      
         bool webView = constraints.maxWidth > 1090;
         bool tabletView = constraints.maxWidth > 600 && constraints.maxWidth < 1090;
         bool mobileView = constraints.maxWidth < 700;
-        print('webView: $webView, tabletView: $tabletView, mobileView: $mobileView');
-
+        
         if(mobileView) {
           skillsOffset = Offset(width*0.1, 60);
           servicesOffset = Offset(width*0.3, 350);

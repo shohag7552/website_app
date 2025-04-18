@@ -12,4 +12,8 @@ class Images {
   static const String ammartDelivery = 'assets/images/6amMart_delivery_man_app.webp';
   static const String stackfoodRestaurant = 'assets/images/stackFood_restaurant.png';
   static const String stackfoodDelivery = 'assets/images/stackfood_delivery.png';
+  static const String gamil = 'assets/images/gmail.png';
+  static const String facebook = 'assets/images/facebook.png';
+  static const String linkdin = 'assets/images/linkedin.png';
+  static const String github = 'assets/images/github.png';
 }

@@ -46,9 +46,12 @@ class LinePainter extends CustomPainter {
       Offset(size.width * 0.8, size.height * 0.3),
       Offset(size.width / 2, size.height * 0.40),
       Offset(size.width * 0.8, size.height * 0.95),
-      Offset(size.width / 2, size.height * 0.7),
+      // 
       Offset(size.width / 2, size.height * 0.75),
       Offset(size.width / 2, size.height * 0.9),
+      Offset(size.width * 0.8, size.height * 0.4),
+      Offset(size.width * 0.8, size.height * 0.56),
+      Offset(size.width * 0.8, size.height * 0.65),
     ];
 
     for (var dot in dots) {
@@ -63,7 +66,7 @@ class LinePainter extends CustomPainter {
     _drawText(canvas, textPainter, "EXPERIENCE", Offset(size.width * 0.75, size.height * 0.18));
     _drawText(canvas, textPainter, "SKILLS", Offset(size.width * 0.48, size.height * 0.05));
     _drawText(canvas, textPainter, "TOOLS USED", Offset(size.width * 0.48, size.height * 0.35));
-    _drawText(canvas, textPainter, "MORE DETAILS", Offset(size.width * 0.48, size.height * 0.75));
+    _drawText(canvas, textPainter, "MAIN PROJECTS", Offset(size.width * 0.47, size.height * 0.76));
   }
 
   void _drawText(Canvas canvas, TextPainter textPainter, String text, Offset position) {
